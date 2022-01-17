@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mychart.fullname" . | lower }}-lb-service
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+spec:
+  selector:
+    {{- include "mychart.selectorLabels" . | nindent 6 }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: {{ .Values.deployment.listenPort }}
+  type: LoadBalancer
+  externalTrafficPolicy: Local

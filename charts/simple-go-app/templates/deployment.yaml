@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . | lower }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.deployment.replicaCount }}
+  template:
+    metadata:
+      labels:
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "mychart.fullname" . | lower }}-sa
+      containers:
+        - name: {{ include "mychart.fullname" . | lower }}
+          image: "{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.version }}"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - name: listenport
+              containerPort: {{ .Values.deployment.listenPort }}
+          env:
+            - name: TABLE_NAME
+              value: {{ .Values.dynamodbTableName }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.deployment.listenPort }}
+            failureThreshold: 2
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.deployment.listenPort }}
+            failureThreshold: 2
+            periodSeconds: 10

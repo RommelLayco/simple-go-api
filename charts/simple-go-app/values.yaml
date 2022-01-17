@@ -1,0 +1,14 @@
+
+---
+deployment:
+  replicaCount: 2
+  image:
+    name: rommell/simple-go-app
+    version: latest
+  listenPort: 8080
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: PLACEHOLDER
+
+dynamodbTableName: PLACEHOLDER

@@ -1,0 +1,6 @@
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::745193994333:role/EKSDynamodbRole
+
+
+dynamodbTableName: EKS_TEST_TABLE

@@ -1,3 +1,32 @@
+
+# SimpleGoApp
+
+This porject deploys a simple go app inside a EKS Cluster
+
+## Prerequisites
+
+* helm
+* access to an eks clusterr
+* role with permission to access a dynmaodb [IAM Roles for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)
+
+## Deploymemt
+
+1. Create a copy of the values-dev file. Updating the values as needed
+2. Install chart onto cluster with the following command
+
+```bash
+helm upgrade app charts/simple-go-app --install --create-namespace -n simple-go-app -f charts/application/values-dev.yaml
+```
+
+## Application Description
+
+The API has four endpoints
+
+* `/` returns "Home"
+* `/upsert` creates or updates an item
+* `/show` returns the item
+* `/error` throws an error
+
 ## Coding Challenge 
 
 Here we have simple API that updates a single item in a DynamoDB table and retreives the value.
@@ -10,15 +39,6 @@ We would like to see you tackle areas like observability, security and scalabili
 Take it as far as you like, to the point where you would be happy going to production.
 
 If you choose to use Lambda, you can alter the code as you like to get it to run.
-
-## Application Description
-
-The API has four endpoints
-
-- `/` returns "Home"
-- `/upsert` creates or updates an item
-- `/show` returns the item
-- `/error` throws an error
 
 ## Other information
 
