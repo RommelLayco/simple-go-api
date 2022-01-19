@@ -8,6 +8,7 @@ deployment:
   listenPort: 8080
 
 serviceAccount:
+  name: simple-go-app-sa
   annotations:
     eks.amazonaws.com/role-arn: PLACEHOLDER
 

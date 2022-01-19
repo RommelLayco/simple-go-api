@@ -1,6 +1,5 @@
 serviceAccount:
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::745193994333:role/EKSDynamodbRole
-
+    eks.amazonaws.com/role-arn: arn:aws:iam::745193994333:role/SimpleGoApp-access-dynamodb-20220119051436376800000001
 
 dynamodbTableName: EKS_TEST_TABLE

@@ -16,7 +16,7 @@ spec:
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "mychart.fullname" . | lower }}-sa
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
         - name: {{ include "mychart.fullname" . | lower }}
           image: "{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.version }}"
