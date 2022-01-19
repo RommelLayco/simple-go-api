@@ -2,12 +2,12 @@
 name = "SimpleGoApp"
 
 # AWS profile used to deploy infrastructure
-aws_profile = "envoy-dev"
+aws_profile = "PLACEHOLDER"
 
 # Name of the dynamodb table used for the simple go app"
-dynamodb_table_name = "EKS_TEST_TABLE"
+dynamodb_table_name = "PLACEHOLDER"
 
-kubernetes_admin_role_arn = "arn:aws:iam::745193994333:role/SiteReliabilityEngineer"
+kubernetes_admin_role_arn = "arn:aws:iam::1234567891234:role/SiteReliabilityEngineer"
 
 # AWS region to deloy application
 region = "us-west-2"
